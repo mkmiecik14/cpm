@@ -9,7 +9,8 @@
 %
 
 % Sets working directory ----
-main_dir = 'M:\kevin-cpm\'; % 'C:\Analysis\kevin-cpm\'
+%main_dir = 'M:\kevin-cpm\';                % when working from home
+main_dir = 'C:\Analysis\kevin-cpm\';        % when working from lab
 data_dir = fullfile(main_dir, 'data\');
 output_dir = fullfile(main_dir, 'output\');
 
