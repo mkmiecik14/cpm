@@ -53,6 +53,9 @@ EEG = pop_eegthresh(EEG,...
     1);                     % 1 = immediately rej trials
 [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, EEG, 1,'setname','epochs','gui','off');
 
+% Saves out epoched data
+pop_saveset(EEG,'filename','kevin-cpm-epochs-2','filepath',output_dir);
+
 % Draw ERPs
 EEG = pop_selectevent( EEG, 'type',{'zap_baseline'},'deleteevents','on','deleteepochs','on','invertepochs','off');
 [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, EEG, 1,'setname','baseline','gui','off'); 
