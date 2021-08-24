@@ -64,10 +64,17 @@ nose <- data.frame(x = c(-0.075, 0, .075), y = c(.495, .575, .495))
 # Produces blank topography map with electrodes
 ggplot(headShape,aes(x,y)) +
   geom_path() +
+  geom_point(data = elec_locs, aes(x, y)) +
   geom_text(data = elec_locs, aes(x, y, label = labels)) +
   geom_line(data = nose, aes(x, y, z = NULL)) +
   theme_topo() +
   coord_equal()
+# SVG save
+ggsave(
+  filename = "blank-topo.svg",
+  path = "../output/",
+  width = 6.5, height = 4, units = "in"
+)
 
 # Function for interpolating
 # data is a data frame containing electrode coordinates at x and y
@@ -95,7 +102,7 @@ topo_interp <-
     interp_topo <- interp_topo %>% gather(key = y, value = !!dv, -x, convert = TRUE)
     
     # mark grid elements that are outside of the plotting circle
-    interp_topo$incircle <- sqrt(interp_topo$x^2 + interp_topo$y^2) < .7 # original value was .7
+    interp_topo$incircle <- sqrt(interp_topo$x^2 + interp_topo$y^2) < .6 # original value was .7
     interp_topo <- interp_topo[interp_topo$incircle,] #remove the elements outside the circle
     return(interp_topo)
 }
